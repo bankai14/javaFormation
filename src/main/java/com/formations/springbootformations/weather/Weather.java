@@ -13,7 +13,8 @@ public class Weather {
 
     private Integer cod;
     private Integer message;
-    private Integer cnt;
+    @JsonProperty(value = "cnt")
+    private Integer sizeJsonElement;
     @JsonProperty(value = "list")
     private List<Forcast> forcastList;
     private Map<String, Forcast> city;
@@ -45,12 +46,12 @@ public class Weather {
         this.message = message;
     }
 
-    public Integer getCnt() {
-        return cnt;
+    public Integer getSizeJsonElement() {
+        return sizeJsonElement;
     }
 
-    public void setCnt(Integer cnt) {
-        this.cnt = cnt;
+    public void setSizeJsonElement(Integer sizeJsonElement) {
+        this.sizeJsonElement = sizeJsonElement;
     }
 
     public Map getCity() {

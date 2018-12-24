@@ -3,6 +3,7 @@ package com.formations.springbootformations.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.formations.springbootformations.services.HottestDay;
+import com.formations.springbootformations.services.RainDays;
 import com.formations.springbootformations.weather.Weather;
 
 import com.google.gson.*;
@@ -38,10 +39,9 @@ public class HelloWorld {
         Map<String, Object> map = new HashMap<>();
 
         HottestDay hottestDay = new HottestDay();
+        RainDays rainDays = new RainDays();
 
-        hottestDay.getHottestDay();
-
-        System.out.println("------------------");
+        System.out.println(rainDays.getRainDays());
 
         try {
 

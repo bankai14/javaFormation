@@ -7,13 +7,28 @@ import java.io.IOException;
 
 public class HottestDay {
 
-    public String getHottestDay() throws IOException {
-        OpenWeatherMap openWeatherMap = new OpenWeatherMap();
-        ObjectMapper mapper = new ObjectMapper();
-        Weather mp = mapper.readValue(openWeatherMap.getWeatherMap("Roubaix"), Weather.class);
+    /**
+     *
+     * @return Le jour le plus chaud du résultat
+     * @throws IOException
+     */
+    public String getHottestDay(String city) throws IOException {
 
-        //System.out.println(mp.getForcastList().get(0).toString());
+        WeatherApi weather = new WeatherApi();
 
-        return "ret";
+        Weather mp = weather.getWeather(city);
+
+
+        double hottestTemp = 0;
+        String hottestDate = null;
+
+        for (int i = 0; i  < mp.getSizeJsonElement(); i++)
+        {
+            if ((double) mp.getForcastList().get(i).getMain().get("temp") > hottestTemp) {
+                hottestTemp = (double) mp.getForcastList().get(i).getMain().get("temp");
+                hottestDate = mp.getForcastList().get(i).getDate();
+            }
+        }
+        return hottestDate;
     }
 }
