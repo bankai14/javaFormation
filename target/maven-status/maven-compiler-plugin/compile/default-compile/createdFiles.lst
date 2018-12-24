@@ -1,3 +1,6 @@
-com/formations/springbootformations/SpringBootFormationsApplication.class
-com/formations/springbootformations/weather/Weather.class
-com/formations/springbootformations/controllers/helloWorld.class
+com\formations\springbootformations\weatherObject\WeatherObject.class
+com\formations\springbootformations\weather\Weather.class
+com\formations\springbootformations\controllers\HelloWorld.class
+com\formations\springbootformations\SpringBootFormationsApplication.class
+com\formations\springbootformations\weather\Forcast.class
+com\formations\springbootformations\weather\Main.class

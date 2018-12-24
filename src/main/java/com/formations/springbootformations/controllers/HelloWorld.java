@@ -2,12 +2,10 @@ package com.formations.springbootformations.controllers;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.formations.springbootformations.services.HottestDay;
 import com.formations.springbootformations.weather.Weather;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+import com.google.gson.*;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
 import org.json.JSONObject;
@@ -15,6 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.*;
 
 @RestController
@@ -31,13 +30,18 @@ public class HelloWorld {
 
 
     @GetMapping("/getWeather")
-    public String getWeather(@RequestParam("city") String city)
-    {
+    public String getWeather(@RequestParam("city") String city) throws IOException {
         HttpResponse<String> response = null;
         //Weather[] weather = new Weather[100];
 
         ObjectMapper mapper = new ObjectMapper();
         Map<String, Object> map = new HashMap<>();
+
+        HottestDay hottestDay = new HottestDay();
+
+        hottestDay.getHottestDay();
+
+        System.out.println("------------------");
 
         try {
 
@@ -45,6 +49,8 @@ public class HelloWorld {
            response = Unirest.get("http://api.openweathermap.org/data/2.5/forecast?q="+city+"&APPID=d5c41a0ac5565a5f9042778c0a29de48")
                    .header("cache-control", "no-cache")
                    .asString();
+
+           this.parseTemp(response.getBody(), 0);
 
           /* for (Integer iterate = 0; iterate < 20; iterate++)
            {
@@ -68,7 +74,6 @@ public class HelloWorld {
 
            // System.out.println(mp.getTemp(1));
 
-            System.out.println(mp.getForcastList().get(0));
 
             //je récupère sous la forme d'un objet json la réponse.
 
